@@ -25,9 +25,9 @@
 		</ol>
 		<h2>Conceptual Model</h2>
 		<ol>
-			<li>Each user can veiw <strong> many</strong> questions.</li>
-			<li>Each user can post <strong>many</strong> questions.</li>
-			<li>Each user can search and vote up or down on <strong>many</strong>questions.</li>
+			<li>Each user can view <strong> many</strong> questions <strong>many</strong> times.</li>
+			<li>Each user can post <strong>many</strong> questions <strong>many</strong> times.</li>
+			<li>Each user can search and vote up or down on <strong>many</strong>questions <strong>many</strong> times.</li>
 		</ol>
 		<!-- Need to post questions with the ability for other users to answer the question -->
 		<!-- Need to post answers -->
