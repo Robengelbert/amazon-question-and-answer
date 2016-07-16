@@ -38,6 +38,7 @@
 		<h2>Conceptual Model</h2>
 		<ol>
 			<li>Each user can post 1 post <strong>many</strong> times with different questions in each post.</li>
+			<li><strong>Many</strong> users can respond to each post many times</li>
 			<li>Each user can view <strong> many</strong> questions <strong>many</strong> times.</li>
 			<li>Each user can search and vote up or down on <strong>many</strong>questions <strong>many</strong> times.</li>
 		</ol>
