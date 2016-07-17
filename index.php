@@ -43,5 +43,7 @@
 			<li>Each user can view <strong> many</strong> questions <strong>many</strong> times.</li>
 			<li>Each user can search and vote up or down on <strong>many</strong>questions <strong>many</strong> times.</li>
 		</ol>
+		<h2>Entity Relationship Diagram</h2>
+		<img src="images/entityrelationshipdiagram.png" alt="Entity relationship diagram" />
 	</body>
 </html>
