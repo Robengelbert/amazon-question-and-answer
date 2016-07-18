@@ -41,7 +41,6 @@
 			<li>Each question about the product can only be asked once.</li>
 			<li>Each question about the product can be answered <strong>many</strong> times by many users or the seller.</li>
 			<li>Each user can search and vote up or down on each question <strong>many</strong> times.</li>
-			<li></li>
 		</ol>
 		<h2>Entity Relationship Diagram</h2>
 		<img src="images/entitydiagram.png" alt="Entity relationship diagram" />
