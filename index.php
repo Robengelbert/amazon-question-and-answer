@@ -37,11 +37,11 @@
 		<!-- State the conceptual model -->
 		<h2>Conceptual Model</h2>
 		<ol>
-			<li>Each user can post 1 post <strong>many</strong> times with different questions in each post.</li>
-			<li><strong>Many</strong> users can respond to each post <strong>many</strong> times</li>
-			<li>The seller can respond each question <strong>many</strong> times</li>
-			<li>Each user can view <strong> many</strong> questions <strong>many</strong> times.</li>
-			<li>Each user can search and vote up or down on <strong>many</strong>questions <strong>many</strong> times.</li>
+			<li>Each product can have <strong>many</strong>questions.</li>
+			<li>Each question about the product can only be asked once.</li>
+			<li>Each question about the product can be answered <strong>many</strong> times by many users or the seller.</li>
+			<li>Each user can search and vote up or down on each question <strong>many</strong> times.</li>
+			<li></li>
 		</ol>
 		<h2>Entity Relationship Diagram</h2>
 		<img src="images/entitydiagram.png" alt="Entity relationship diagram" />
