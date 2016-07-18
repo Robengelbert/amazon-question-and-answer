@@ -37,7 +37,7 @@
 		<!-- State the conceptual model -->
 		<h2>Conceptual Model</h2>
 		<ol>
-			<li>Each product can have <strong>many</strong>questions.</li>
+			<li>Each product can have <strong>many</strong> questions.</li>
 			<li>Each question about the product can only be asked once.</li>
 			<li>Each question about the product can be answered <strong>many</strong> times by many users or the seller.</li>
 			<li>Each user can search and vote up or down on each question <strong>many</strong> times.</li>
