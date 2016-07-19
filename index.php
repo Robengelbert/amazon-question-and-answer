@@ -43,6 +43,6 @@
 			<li>Each user can search and vote up or down on each question <strong>many</strong> times.</li>
 		</ol>
 		<h2>Entity Relationship Diagram</h2>
-		<img src="images/entitydiagram.svg" alt="Entity relationship diagram" />
+		<img src="images/relationdiagram.svg" alt="Entity relationship diagram" />
 	</body>
 </html>
