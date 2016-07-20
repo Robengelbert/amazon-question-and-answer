@@ -1,10 +1,15 @@
+DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS question;
+DROP TABLE IF EXISTS answer;
+DROP TABLE IF EXISTS user;
+
 USE amazon;
 CREATE TABLE user (
 	userEmail VARCHAR(128) NOT NULL,
 	userId INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	userName VARCHAR(128) NOT NULL,
-	userPassHash VARCHAR(128) NOT NULL,
-	userPassSalt VARCHAR(128) NOT NULL,
+	userPassHash CHAR(128) NOT NULL,
+	userPassSalt CHAR(64) NOT NULL,
 	UNIQUE(userEmail),
 	UNIQUE(userPassHash),
 	UNIQUE(userPassSalt),
