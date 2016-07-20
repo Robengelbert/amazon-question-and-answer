@@ -39,13 +39,13 @@
 		<!-- State the conceptual model -->
 		<h2>Conceptual Model</h2>
 		<ol>
-			<li>Each product can have <strong>many</strong> questions.</li>
-			<li>Each question can have <strong>many</strong> answers</li>
-			<li>Each user can ask many questions many times.</li>
-			<li>Each user can answer many questions many times.</li>
-			<li>Each user can vote on many questions.</li>
+			<li><strong>One</strong> product can have <strong>many</strong> questions.</li>
+			<li><strong>One</strong> question can have <strong>many</strong> answers</li>
+			<li><strong>One</strong> user can ask <strong>many</strong> questions <strong>many</strong> times.</li>
+			<li>One user can answer <strong>many</strong> questions many times.</li>
+			<li><strong>One</strong> user can vote on <strong>many</strong> questions.</li>
 		</ol>
 		<h2>Entity Relationship Diagram</h2>
-		<img src="images/erddiagram-2.svg" alt="Entity relationship diagram" />
+		<img src="images/erddiagram-3.svg" alt="Entity relationship diagram" />
 	</body>
 </html>
