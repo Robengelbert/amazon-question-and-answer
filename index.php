@@ -42,7 +42,7 @@
 			<li><strong>One</strong> product can have <strong>many</strong> questions.</li>
 			<li><strong>One</strong> question can have <strong>many</strong> answers</li>
 			<li><strong>One</strong> user can ask <strong>many</strong> questions <strong>many</strong> times.</li>
-			<li>One user can answer <strong>many</strong> questions many times.</li>
+			<li><strong>One</strong> user can answer <strong>many</strong> questions many times.</li>
 			<li><strong>One</strong> user can vote on <strong>many</strong> questions.</li>
 		</ol>
 		<h2>Entity Relationship Diagram</h2>
