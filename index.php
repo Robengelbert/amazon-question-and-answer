@@ -46,6 +46,6 @@
 			<li><strong>One</strong> user can vote on <strong>many</strong> questions.</li>
 		</ol>
 		<h2>Entity Relationship Diagram</h2>
-		<img src="images/erdiagram.svg" alt="Entity relationship diagram" />
+		<img src="images/erdiagram-1.svg" alt="Entity relationship diagram" />
 	</body>
 </html>
