@@ -29,13 +29,13 @@ CREATE TABLE question (
 	questionDateTime VARCHAR(128) NOT NULL,
 	questionId INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	questionProductId VARCHAR(128) NOT NULL,
-	questionText VARCHAR(1000) NOT NULL,
+	questionText VARCHAR(140) NOT NULL,
 	questionUserId VARCHAR(128) NOT NULL,
 	PRIMARY KEY(questionId)
 );
 
 CREATE TABLE product (
-	productId VARCHAR(1000),
+	productId VARCHAR(140),
 	productName VARCHAR(128),
 	PRIMARY KEY(productId)
 );
