@@ -36,5 +36,6 @@ CREATE TABLE question (
 
 CREATE TABLE product (
 	productId VARCHAR(1000),
-	productName VARCHAR(128)
+	productName VARCHAR(128),
+	PRIMARY KEY(productId)
 );
