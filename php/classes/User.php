@@ -139,6 +139,8 @@ class Amazon {
 	}
 
 	/**
+	 * Accessor method for userPassHash
+	 *
 	 * @return int
 	 */
 	public function getUserPassHash() {
@@ -146,12 +148,21 @@ class Amazon {
 	}
 
 	/**
+	 * Mutator method for userPassHash
+	 *
 	 * @param int $userPassHash
+	 * @throws UnexpectedValueException if userPassHash is not a string or under 128 characters
+	 * @throws TypeError if value is not a string
 	 */
-	public function setUserPassHash($userPassHash) {
+	public function setUserPassHash(string $userPassHash) {
+		if(ctype_xdigit($userPassHash)>128){
+			throw(new UnexpectedValueException("The information you have entered is invalid."));
+		}
 		$this->userPassHash = $userPassHash;
 	}
 	/**
+	 * Accessor method for userPassSalt
+	 *
 	 * @return int
 	 */
 	public function getUserPassSalt() {
@@ -159,9 +170,16 @@ class Amazon {
 	}
 
 	/**
+	 * Mutator method for userPassSalt
+	 *
 	 * @param int $userPassSalt
+	 * @throws UnexpectedValueException if the value is not a string or <=64 characters
+	 * @throws TypeError if value entered is not a string.
 	 */
-	public function setUserPassSalt($userPassSalt) {
+	public function setUserPassSalt(string $userPassSalt) {
+		if(ctype_xdigit($userPassSalt)>64){
+			throw(new UnexpectedValueException("The information you entered is invalid"));
+		}
 		$this->userPassSalt = $userPassSalt;
 	}
 }
