@@ -1,5 +1,13 @@
 <?php
 
+
+
+/**
+ * Small section of Amazon customer question and answer
+ *
+ * Class Question
+ * @author Robert Engelbert <rengelbert@cnm.edu>
+ */
 class Question{
 	/**
 	 * question Id this is the primary key
@@ -27,6 +35,8 @@ class Question{
 	 */
 	public $questionUserId;
 
+
+	
 	/**
 	 * Accessor method for questionId
 	 * @return mixed

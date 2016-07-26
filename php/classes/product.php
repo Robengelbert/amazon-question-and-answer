@@ -31,14 +31,16 @@ public $productName;
 	 * mutator metnod for productId
 	 *
 	 * @param $newProductId
+	 * @throws \RangeException if productId is not positive
+	 * @throws \TypeError if productId is not and interger
 	 */
-	public function setProductId($newProductId){
-		// verify this is a valid productId
-		$newProductId = filter_var($newProductId, FILTER_VALIDATE_INT);
-		if($newProductId === false){
-			throw(new UnexpectedValueException("Wrong product Id"));
+	public function setProductId(int $newProductId){
+		//verify the productId is positive
+		if($newProductId <=0){
+			throw(new \RangeException("Product Id needs to be a positive number"));
 		}
-		$this->productId = intval($newProductId);
+		//convert and store productId
+		$this->productId = $newProductId;
 	}
 
 	/**
@@ -54,13 +56,14 @@ public $productName;
 	 * mutator method for productName
 	 *
 	 * @param $newProductName
+	 * @throws UnexpectedValueException if productName is not a string
 	 */
-	public function setProductName($newProductName){
-		// verify this is a valid product
-		$newProductName = filter_var($newProductName, FILTER_SANITIZE_STRING);
+	public function setProductName(string $newProductName){
+		//verify porductName is valid
 		if($newProductName === false){
 			throw(new UnexpectedValueException("Please enter a valid product name"));
 		}
-		$this->productName = strval($newProductName);
+		//convert and store new string
+		$this->productName = $newProductName;
 	}
 }

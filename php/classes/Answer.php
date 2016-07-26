@@ -39,13 +39,18 @@ class Answer{
 
 	/**
 	 * Mutator method for answer Id
+	 *
 	 * @param $newAnswerId
+	 * @throws \RangeException if answerId is not positive
+	 * @throws TypeError if value is not an integer
 	 */
 	public function setAnswerId( int $newAnswerId){
-		if($newAnswerId === false){
-			throw(new UnexpectedValueException("Invalid user Id"));
+		//verify the value is a integer
+		if($newAnswerId <= 0){
+			throw(new \RangeException("Value needs to be a positive number"));
 		}
-		$this->answerId = intval($newAnswerId);
+		//Convert and store the new value
+		$this->answerId = $newAnswerId;
 	}
 
 	/**
@@ -78,11 +83,15 @@ class Answer{
 	/**
 	 * Mutator function for answer text
 	 * @param $newAnswerText
+	 * @throws \UnexpectedValueException if value is not a string
+	 * @throws TypeError if value is not a string
 	 */
 	public function setAnswerText( str $newAnswerText){
-		if($newAnswerText === false){
-			throw(new UnexpectedValueException("That's not a valid answer."));
+		//Verify the value input is a string
+		if($newAnswerText !== $newAnswerText){
+			throw(new UnexpectedValueException("Please use sentences."));
 		}
+		//Convert and store the value returned
 		$this->answerText = $newAnswerText;
 	}
 
@@ -96,12 +105,15 @@ class Answer{
 
 	/**
 	 * Mutator method for answer user Id
+	 *
 	 * @param $newAnswerUserId
 	 */
 	public function setAnswerUserId( int $newAnswerUserId){
-		if($newAnswerUserId === false){
-			throw(new UnexpectedValueException("You entered invalid user info"));
+		//Verify the value is an integer
+		if($newAnswerUserId <= 0){
+			throw(new \RangeException("Value needs to be a positive number"));
 		}
+		//Convert and store the value
 		$this->answerUserId = $newAnswerUserId;
 	}
 
@@ -118,9 +130,11 @@ class Answer{
 	 * @param $newAnswerQuestionId
 	 */
 	public function setAnswerQuestionId( int $newAnswerQuestionId){
-		if($newAnswerQuestionId === false){
-			throw(new UnexpectedValueException("You entered invalid user info"));
+		//Verify value is an positive integer
+		if($newAnswerQuestionId <= 0){
+			throw(new \RangeException("Value has to be a positive integer"));
 		}
+		//Convert and store the value
 		$this->answerQuestionId = $newAnswerQuestionId;
 	}
 }
