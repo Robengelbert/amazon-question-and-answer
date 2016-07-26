@@ -35,6 +35,34 @@ class Amazon {
 	private $userPassSalt;
 
 	/**
+	 * @param int $newUserId Id of this user
+	 * @param string $newUserEmail email of this user
+	 * @param string $newUserName userName of this user
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \Exception if exception occurs
+	 * @throws \TypeError if data types violate type hints
+	 */
+	public function _construct(int $newUserId, string $newUserEmail, string $newUserName){
+		try{
+			$this->setUserId($newUserId);
+			$this->setUserEmail($newUserEmail);
+			$this->setUserName($newUserName);
+		} catch(\InvalidArgumentException $invalidArgument) {
+			//rethrow the exception to the caller
+			throw(new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
+		}catch(\RangeException $range){
+				//rethrow the exception to the caller
+				throw(new \RangeException($range->getMessage(),0,$range));
+		}catch(\TypeError $typeError){
+			//rethrow the exception to the caller
+			throw(new \TypeError($typeError->getMessage(),0,$typeError));
+		}catch(\Exception $exception){
+			//rethrow the exception to the caller
+			throw(new \Exception($exception->getMessage(),0,$exception));
+		}
+
+	}
+	/**
 	 * accessor method for userId
 	 * @return int value of userId
 	 */
@@ -45,18 +73,19 @@ class Amazon {
 	/**
 	 * mutator method for user id
 	 *
-	 * @param $newUserId new value of user id
+	 * @param $newUserId
+	 * @throws \RangeException if userId is not positive
+	 * @throws TypeError if userId is not an integer
 	 */
-	public function setUserId($newUserId){
+	public function setUserId(int $newUserId){
 		// verify userId is valid
-		$newUserId = filter_var($newUserId, FILTER_VALIDATE_INT);
-		if($newUserId === false){
-			throw(new UnexpectedValueException("You entered the wrong user info"));
+		if($newUserId <= 0){
+			throw(new \RangeException("User Id must be a positive integer"));
 		}
-		/**
-		 * Convert and store the userId
-		 */
-		$this->userId = intval=($newUserId);
+
+		 // Convert and store the userId
+
+		$this->userId = $newUserId;
 	}
 
 	/**
@@ -69,15 +98,19 @@ class Amazon {
 	}
 
 	/**
-	 * mutator method for userEmail
+	 * Mutator method for userEmail
 	 *
 	 * @param $newUserEmail
+	 * @throws InvalidArgumentException if no email
+	 * @throws TypeError if value is not a string
 	 */
-	public function setUserEmail($newUserEmail){
-		$newUserEmail = filter_input($newUserEmail, FILTER_VALIDATE_EMAIL);
-		if($newUserEmail === false){
-			throw(new UnexpectedValueException("You entered the wrong user info"));
+	public function setUserEmail( string $newUserEmail){
+		//Verify email
+		$newUserEmail = filter_var($newUserEmail, FILTER_SANITIZE_EMAIL);
+		if(empty($newUserEmail) === true){
+			throw(new \InvalidArgumentException(" Enter your email"));
 		}
+		$this->userEmail = $newUserEmail;
 	}
 
 	/**
@@ -90,14 +123,45 @@ class Amazon {
 	}
 
 	/**
-	 * mutator method for userName
+	 * Mutator method for userName
 	 *
 	 * @param $newUserName
+	 * @throws Exception if userName is missing
+	 * @throws TypeError if value is not a string
 	 */
-	public function setUserName($newUserName){
-		$newUserName = filter_var($newUserName, FILTER_VALIDATE_STRING);
-		if($newUserName === false){
-			throw(new UnexpectedValueException("You entered the wrong info"));
+	public function setUserName(string $newUserName){
+		$newUserName = filter_var($newUserName, FILTER_SANITIZE_STRING);
+		//verify userName is valid
+		if(empty($newUserName) === true){
+			throw(new \Exception("Enter your user name"));
 		}
+		$this->userName = $newUserName;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getUserPassHash() {
+		return $this->userPassHash;
+	}
+
+	/**
+	 * @param int $userPassHash
+	 */
+	public function setUserPassHash($userPassHash) {
+		$this->userPassHash = $userPassHash;
+	}
+	/**
+	 * @return int
+	 */
+	public function getUserPassSalt() {
+		return $this->userPassSalt;
+	}
+
+	/**
+	 * @param int $userPassSalt
+	 */
+	public function setUserPassSalt($userPassSalt) {
+		$this->userPassSalt = $userPassSalt;
 	}
 }
