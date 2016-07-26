@@ -155,7 +155,7 @@ class Amazon {
 	 * @throws TypeError if value is not a string
 	 */
 	public function setUserPassHash(string $userPassHash) {
-		if(ctype_xdigit($userPassHash)>128){
+		if(ctype_xdigit($userPassHash)!==128){
 			throw(new UnexpectedValueException("The information you have entered is invalid."));
 		}
 		$this->userPassHash = $userPassHash;
@@ -177,7 +177,7 @@ class Amazon {
 	 * @throws TypeError if value entered is not a string.
 	 */
 	public function setUserPassSalt(string $userPassSalt) {
-		if(ctype_xdigit($userPassSalt)>64){
+		if(ctype_xdigit($userPassSalt)!==64){
 			throw(new UnexpectedValueException("The information you entered is invalid"));
 		}
 		$this->userPassSalt = $userPassSalt;
