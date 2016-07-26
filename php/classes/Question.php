@@ -40,12 +40,11 @@ class Question{
 	 * Mutator method for questionId
 	 * @param $newQuestionId
 	 */
-	public function setQuestionId($newQuestionId){
-		$newQuestionId = filter_var($newQuestionId, FILTER_VALIDATE_INT);
+	public function setQuestionId(int $newQuestionId){
 		if($newQuestionId === false){
 			throw(new UnexpectedValueException("You entered invalid user info"));
 		}
-		$this->questionId = intval($newQuestionId);
+		$this->questionId = $newQuestionId;
 	}
 
 	/**
@@ -60,12 +59,11 @@ class Question{
 	 * Mutator method for question date and time.
 	 * @param $newQuestionDateTime
 	 */
-	public function setQuestionDateTime($newQuestionDateTime){
-		$newQuestionDateTime = filter_var($newQuestionDateTime, FILTER_VALIDATE_INT);
+	public function setQuestionDateTime(int $newQuestionDateTime){
 		if($newQuestionDateTime === false){
 			throw(new UnexpectedValueException("That's not todays date"));
 		}
-		$this->questionDateTime = intval($newQuestionDateTime);
+		$this->questionDateTime = $newQuestionDateTime;
 	}
 
 	/**
@@ -80,12 +78,11 @@ class Question{
 	 * Mutator method for question Product id
 	 * @param $newQuestionProductId
 	 */
-	public function setQuestionProductId($newQuestionProductId){
-		$newQuestionProductId = filter_var($newQuestionProductId, FILTER_VALIDATE_INT);
+	public function setQuestionProductId(int $newQuestionProductId){
 		if($newQuestionProductId === false){
 			throw(new UnexpectedValueException("Thiers not a question with that Id"));
 		}
-		$this->questionProductId = intval($newQuestionProductId);
+		$this->questionProductId = $newQuestionProductId;
 	}
 
 	/**
@@ -102,12 +99,11 @@ class Question{
 	 *
 	 * @param $newQuestionText
 	 */
-	public function setQuestionText($newQuestionText){
-		$newQuestionText = filter_var($newQuestionText, FILTER_SANITIZE_STRING);
+	public function setQuestionText(str $newQuestionText){
 		if($newQuestionText === false){
 			throw(new UnexpectedValueException("That's not a question."));
 		}
-		$this->$newQuestionText = strval($newQuestionText);
+		$this->questionText = $newQuestionText;
 	}
 
 	/**
@@ -124,10 +120,10 @@ class Question{
 	 *
 	 * @param $newQuestionUserId
 	 */
-	public function setQuestionUserId ($newQuestionUserId){ $newQuestionUserId = filter_var($newQuestionUserId, FILTER_VALIDATE_INT);
+	public function setQuestionUserId (int $newQuestionUserId){
 		if($newQuestionUserId === false){
 			throw(new UnexpectedValueException("You entered invalid user info"));
 		}
-		$this->$newQuestionUserId = intval($newQuestionUserId);
+		$this->questionUserId = $newQuestionUserId;
 	}
 }
