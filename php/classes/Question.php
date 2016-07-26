@@ -38,12 +38,17 @@ class Question{
 
 	/**
 	 * Mutator method for questionId
+	 *
 	 * @param $newQuestionId
+	 * @throws \RangeException if productId is not positive
+	 * @throws TypeError if questionId is not an integer
 	 */
 	public function setQuestionId(int $newQuestionId){
-		if($newQuestionId === false){
-			throw(new UnexpectedValueException("You entered invalid user info"));
+		//verify that productId is a positive number
+		if($newQuestionId <= 0){
+			throw(new \RangeException("questionId must be a positive number"));
 		}
+		//convert and store new value
 		$this->questionId = $newQuestionId;
 	}
 
@@ -57,6 +62,7 @@ class Question{
 
 	/**
 	 * Mutator method for question date and time.
+	 *
 	 * @param $newQuestionDateTime
 	 */
 	public function setQuestionDateTime(int $newQuestionDateTime){
@@ -76,12 +82,17 @@ class Question{
 
 	/**
 	 * Mutator method for question Product id
+	 *
 	 * @param $newQuestionProductId
+	 * @throws \RangeException if questionProductId is not a positive number
+	 * @throws TypeError if questionProductId is not an integer
 	 */
 	public function setQuestionProductId(int $newQuestionProductId){
-		if($newQuestionProductId === false){
-			throw(new UnexpectedValueException("Thiers not a question with that Id"));
+		//verify the value is a integer
+		if($newQuestionProductId <= 0){
+			throw(new \RangeException("questionProductId needs to be a positive number"));
 		}
+		//convert and store the new value
 		$this->questionProductId = $newQuestionProductId;
 	}
 
@@ -98,11 +109,15 @@ class Question{
 	 * Mutator method for question text
 	 *
 	 * @param $newQuestionText
+	 * @throws \UnexpectedValueException if value is not a string
+	 * @throws \TypeError if value is not a string
 	 */
 	public function setQuestionText(str $newQuestionText){
-		if($newQuestionText === false){
-			throw(new UnexpectedValueException("That's not a question."));
+		//verify value is a string
+		if($newQuestionText !== string){
+			throw(new UnexpectedValueException("Please enter a question"));
 		}
+		//convert and store question
 		$this->questionText = $newQuestionText;
 	}
 
@@ -119,11 +134,15 @@ class Question{
 	 * Mutator method for question user Id
 	 *
 	 * @param $newQuestionUserId
+	 * @throws \RangeException if questionUserId is not a positive number
+	 * @throws TypeError if questionUserId is not an integer
 	 */
 	public function setQuestionUserId (int $newQuestionUserId){
-		if($newQuestionUserId === false){
-			throw(new UnexpectedValueException("You entered invalid user info"));
+		//verify value is an integer
+		if($newQuestionUserId <= 0){
+			throw(new \RangeException("Value needs to be a positive number"));
 		}
+		//Convert and store value
 		$this->questionUserId = $newQuestionUserId;
 	}
 }
