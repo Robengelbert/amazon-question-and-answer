@@ -193,6 +193,12 @@ class Amazon {
 		}
 		$this->userPassSalt = $userPassSalt;
 	}
+
+	/**
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
 	public function insert(\PDO $pdo){
 		if($this->userId !== null) {
 			throw(new \PDOException("I don't know you"));
@@ -204,7 +210,44 @@ class Amazon {
 		//bind the number variables to the place holders in the template
 		$parameters = ["userEmail" => $this->userEmail, "userName" => $this->userName, "userPassHash" => $this->userPassHash, "userPassSalt" => $this->userPassSalt];
 		$statement->execute($parameters);
-		// update the null tweetId with what mySQL just gave us
+		// update the null userId with what mySQL just gave us
 		$this->tweetId = intval($pdo->lastInsertId());
 	}
+	/**
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function delete(\PDO $pdo){
+		// enforce the user Id is not null
+		if($this->userId === null){
+			throw(new \PDOException("unable to delete"));
+		}
+		//create query template
+		$query = "DELETE FROM user WHERE userId = :userId";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the place holder in the
+		$parameters = ["userId" => $this->userId];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function update(\PDO $pdo){
+		if($this->userId === null){
+			throw(new \PDOException("Unable to update"));
+		}
+		//create query template
+		$query = "UPDATE user SET userEmail= :userEmail, userName = :userName, userPassHash = :userPassHash, userPassSalt = :userPassSalt WHERE userId = :userId";
+		$statement = $pdo->prepare($query);
+
+		//bind member variables to the place holders in the template
+		$parameters = ["userId" => $this->userId, "userEmail" => $this->userEmail, "userName" => $this->userName, "userPassHash" => $this->userPassHash, "userPassSalt" => $this->userPassSalt];
+		$statement->execute($parameters);
+	}
+	
 }
