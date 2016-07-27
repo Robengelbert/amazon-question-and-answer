@@ -158,7 +158,7 @@ class Amazon {
 	public function setUserPassHash(string $userPassHash) {
 		//verify hash is hex
 		if(ctype_xdigit($userPassHash)=== false){
-			throw(new \InvalidArgumentExceptionException("The hash is invalid or insecure."));
+			throw(new \InvalidArgumentException("The hash is invalid or insecure."));
 		}
 		//verify hash is 128 characters
 		if(strlen($userPassHash)!== 128){
@@ -185,12 +185,26 @@ class Amazon {
 	public function setUserPassSalt(string $userPassSalt) {
 		//verify salt is hex
 		if(ctype_xdigit($userPassSalt) === false){
-			throw(new \InvalidArgumentExceptionException("The salt is invalid or insecure"));
+			throw(new \InvalidArgumentException("The salt is invalid or insecure"));
 		}
 		//verify salt is 64 characters
 		if(strlen($userPassSalt) !== 64){
 			throw(new RangeException("Salt is not 64 characters"));
 		}
 		$this->userPassSalt = $userPassSalt;
+	}
+	public function insert(\PDO $pdo){
+		if($this->userId !== null) {
+			throw(new \PDOException("I don't know you"));
+		}
+	   //create query template
+	$query = "INSERT INTO user(userEmail, userName, userPassHash, userPassSalt) VALUES(:userEmail, :userName, :userPassHash, :userPassSalt)";
+		$statement = $pdo->prepare($query);
+
+		//bind the number variables to the place holders in the template
+		$parameters = ["userEmail" => $this->userEmail, "userName" => $this->userName, "userPassHash" => $this->userPassHash, "userPassSalt" => $this->userPassSalt];
+		$statement->execute($parameters);
+		// update the null tweetId with what mySQL just gave us
+		$this->tweetId = intval($pdo->lastInsertId());
 	}
 }
