@@ -38,6 +38,7 @@ class Amazon {
 	 * @param int $newUserId Id of this user
 	 * @param string $newUserEmail email of this user
 	 * @param string $newUserName userName of this user
+	 * @throws \RangeException if value is not with in a specified range.
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \Exception if exception occurs
 	 * @throws \TypeError if data types violate type hints
@@ -155,8 +156,13 @@ class Amazon {
 	 * @throws TypeError if value is not a string
 	 */
 	public function setUserPassHash(string $userPassHash) {
-		if(ctype_xdigit($userPassHash)!==128){
-			throw(new UnexpectedValueException("The information you have entered is invalid."));
+		//verify hash is hex
+		if(ctype_xdigit($userPassHash)=== false){
+			throw(new \InvalidArgumentExceptionException("The hash is invalid or insecure."));
+		}
+		//verify hash is 128 characters
+		if(strlen($userPassHash)!== 128){
+			throw(new RangeException("hash is not 128 characters"));
 		}
 		$this->userPassHash = $userPassHash;
 	}
@@ -177,8 +183,13 @@ class Amazon {
 	 * @throws TypeError if value entered is not a string.
 	 */
 	public function setUserPassSalt(string $userPassSalt) {
-		if(ctype_xdigit($userPassSalt)!==64){
-			throw(new UnexpectedValueException("The information you entered is invalid"));
+		//verify salt is hex
+		if(ctype_xdigit($userPassSalt) === false){
+			throw(new \InvalidArgumentExceptionException("The salt is invalid or insecure"));
+		}
+		//verify salt is 64 characters
+		if(strlen($userPassSalt) !== 64){
+			throw(new RangeException("Salt is not 64 characters"));
 		}
 		$this->userPassSalt = $userPassSalt;
 	}
