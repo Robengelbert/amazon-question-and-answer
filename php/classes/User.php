@@ -249,5 +249,35 @@ class Amazon {
 		$parameters = ["userId" => $this->userId, "userEmail" => $this->userEmail, "userName" => $this->userName, "userPassHash" => $this->userPassHash, "userPassSalt" => $this->userPassSalt];
 		$statement->execute($parameters);
 	}
-	
+	public static function getUserByUserName(\PDO $pdo, string $userName){
+		// sanitize the description before searching
+	$userName = trim($userName);
+	$userName = filter_var($userName, FILTER_SANITIZE_STRING);
+	if(empty($userName) === true){
+		throw(new \PDOException("User name is invalid"));
+	}
+		// create query template
+		$query = "SELECT userId, userEmail, userName, userPassHash, userPassSalt FROM user WHERE userName LIKE :userName";
+		$statement = $pdo->prepare($query);
+
+		//bind the user info to the place holder in the template
+		$userName = "%$userName%";
+		$parameters = ["userName" => $userName];
+		$statement->execute($parameters);
+
+		//build an array of users
+		$users = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false){
+			try{
+				$user = new User($row["userId"], $row["userEmail"], $row["userName"], $row["userPassHash"], $row["userPassSalt"]);
+				$users[$users->key()] = $user;
+				$users->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($users);
+	}
 }
